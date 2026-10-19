@@ -10,7 +10,7 @@ class MeuApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Aula 10 Listas e APIs',
+      title: 'Portal de Notícias - Aula 11',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.teal),
       home: const FeedNoticiasScreen(),
     );

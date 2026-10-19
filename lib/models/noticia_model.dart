@@ -1,6 +1,5 @@
 class NoticiaModel {
   final int id;
-  final int autorId;
   final String titulo;
   final String resumo;
   final String conteudoCompleto;
@@ -9,7 +8,6 @@ class NoticiaModel {
 
   NoticiaModel({
     required this.id,
-    required this.autorId,
     required this.titulo,
     required this.resumo,
     required this.conteudoCompleto,
@@ -18,15 +16,16 @@ class NoticiaModel {
   });
 
   factory NoticiaModel.fromJson(Map<String, dynamic> json) {
-    final String corpo = json['body'] ?? 'Sem conteúdo disponível.';
+    int idNoticia = json['id'] ?? 0;
+    String corpo = json['body'] ?? 'Sem conteúdo disponível.';
+    
     return NoticiaModel(
-      id: json['id'] ?? 0,
-      autorId: json['userId'] ?? 1,
+      id: idNoticia,
       titulo: json['title'] ?? 'Sem título',
-      resumo: corpo.length > 40 ? '${corpo.substring(0, 40)}...' : corpo,
+      resumo: corpo.length > 40 ? corpo.substring(0, 40) : corpo,
       conteudoCompleto: corpo,
-      autor: 'Autor ID ${(json['userId']?.toString() ?? '1')}',
-      urlImagem: 'https://picsum.photos/seed/${json['id'] ?? 1}/600/300',
+      autor: 'Autor ID ${json['userId']?.toString() ?? '1'}',
+      urlImagem: 'https://picsum.photos/seed/$idNoticia/600/300',
     );
   }
 }
